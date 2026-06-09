@@ -83,13 +83,28 @@ export default function MapRatings() {
 
   return (
     <div className="pb-4">
-      {/* Header sticky con filtros */}
-      <div className="sticky top-0 z-20 border-b border-gray-200 bg-gray-50/95 px-4 pb-3 pt-5 backdrop-blur-md">
-        <h1 className="text-2xl font-bold text-gray-900">Mapa & Ratings</h1>
-        <p className="text-sm text-gray-500">
-          {filtered.length} {filtered.length === 1 ? 'lugar' : 'lugares'} para descubrir y calificar
-        </p>
-        <div className="no-scrollbar mt-3 flex gap-2 overflow-x-auto">
+      {/* Banner con foto de Buenos Aires (Casa Rosada) */}
+      <div className="relative h-44 overflow-hidden bg-gradient-to-br from-sky-500 to-rose-500">
+        <img
+          src="./mapa-buenosaires.jpg"
+          alt="Buenos Aires — Casa Rosada"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          onError={(e) => {
+            e.currentTarget.style.display = 'none'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/10" />
+        <div className="absolute inset-x-0 bottom-0 px-4 pb-4">
+          <h1 className="text-2xl font-bold text-white drop-shadow-md">Mapa & Ratings</h1>
+          <p className="text-sm font-medium text-white/90 drop-shadow">
+            {filtered.length} {filtered.length === 1 ? 'lugar' : 'lugares'} para descubrir y calificar
+          </p>
+        </div>
+      </div>
+
+      {/* Filtros sticky */}
+      <div className="sticky top-0 z-20 border-b border-gray-200 bg-gray-50/95 px-4 py-3 backdrop-blur-md">
+        <div className="no-scrollbar flex gap-2 overflow-x-auto">
           {DAY_FILTERS.map((f) => {
             const active = filterDay === f.day
             return (
